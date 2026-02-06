@@ -1,6 +1,7 @@
 package io.github.ichikura10.name_tag_remover;
 
 import com.mojang.logging.LogUtils;
+import io.github.ichikura10.name_tag_remover.config.ModConfig;
 import io.github.ichikura10.name_tag_remover.item.ModItems;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
@@ -8,6 +9,7 @@ import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -32,6 +34,8 @@ public class Name_tag_remover {
         modEventBus.addListener(this::addCreative);
 
         ModItems.ITEMS.register(modEventBus);
+
+        ModLoadingContext.get().registerConfig(net.minecraftforge.fml.config.ModConfig.Type.COMMON, ModConfig.COMMON_SPEC);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
